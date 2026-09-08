@@ -32,11 +32,4 @@ A real-time collaborative code editor that allows multiple users to join the sam
 4. Everyone joining the same room can edit the code together.
 5. Code changes are synchronized in real time using Socket.IO.
 
-## Running Locally
 
-### 1. Clone the repository
-
-```bash
-git clone <your-repository-url>
-cd collabify
-```
