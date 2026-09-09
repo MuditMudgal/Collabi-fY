@@ -1,16 +1,16 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const http = require('http');
-const path = require('path');
-const { Server } = require('socket.io');
-const ACTIONS = require('./src/Actions');
+const http = require("http");
+const path = require("path");
+const { Server } = require("socket.io");
+const ACTIONS = require("./src/Actions");
 
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static('build'));
+app.use(express.static("build"));
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const userSocketMap = {};
@@ -22,12 +22,12 @@ function getAllConnectedClients(roomId) {
                 socketId,
                 username: userSocketMap[socketId],
             };
-        }
+        },
     );
 }
 
-io.on('connection', (socket) => {
-    console.log('socket connected', socket.id);
+io.on("connection", (socket) => {
+    console.log("socket connected", socket.id);
 
     socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
         userSocketMap[socket.id] = username;
@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
         io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
     });
 
-    socket.on('disconnecting', () => {
+    socket.on("disconnecting", () => {
         const rooms = [...socket.rooms];
         rooms.forEach((roomId) => {
             socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
