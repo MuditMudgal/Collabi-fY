@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { v4 as uuidV4 } from "uuid";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const navigate = useNavigate();
 
-    const [roomId, setRoomId] = useState('');
-    const [username, setUsername] = useState('');
+    const [roomId, setRoomId] = useState("");
+    const [username, setUsername] = useState("");
     const createNewRoom = (e) => {
         e.preventDefault();
         const id = uuidV4();
         setRoomId(id);
-        toast.success('Created a new room');
+        toast.success("Created a new room");
     };
 
     const joinRoom = () => {
         if (!roomId || !username) {
-            toast.error('ROOM ID & username is required');
+            toast.error("ROOM ID & username is required");
             return;
         }
 
@@ -30,7 +30,7 @@ const Home = () => {
     };
 
     const handleInputEnter = (e) => {
-        if (e.code === 'Enter') {
+        if (e.code === "Enter") {
             joinRoom();
         }
     };
@@ -78,7 +78,7 @@ const Home = () => {
             <footer>
                 <h4>
                     Built with 💛 &nbsp; by &nbsp;
-                    <a href="https://github.com/codersgyan">Coder's Gyan</a>
+                    <a href="https://github.com/codersgyan">Mudit</a>
                 </h4>
             </footer>
         </div>
